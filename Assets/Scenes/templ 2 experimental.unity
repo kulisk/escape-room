@@ -328,6 +328,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4446911940694489159, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
+      propertyPath: newPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446911940694489159, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1056359408}
