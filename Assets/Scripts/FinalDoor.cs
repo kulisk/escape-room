@@ -5,8 +5,11 @@ public class FinalDoor : MonoBehaviour
     public Transform doorTransform; // Reference to the door's Transform component
     [SerializeField] private float closingDuration = 900f; // Duration of door closing in seconds (15 minutes)
     [SerializeField] private float openingDuration = 5f; // Duration of door opening in seconds
-    [SerializeField] private float closingSpeed = 1f; // Speed of door closing in x-axis
-    [SerializeField] private float openingSpeed = 1f; // Speed of door opening in x-axis
+
+    public Vector3 closePosition; // Οι συντεταγμένες της πόρτας όταν είναι κληστή
+
+    private Vector3 openPosition; // Οι συντεταγμένες της πόρτας όταν είναι ανοιχτή
+
     private float closingStartTime; // Time when the door started closing
     private float openingStartTime; // Time when the door started opening
     private bool isClosing = true; // Flag to indicate if the door is closing
@@ -18,31 +21,32 @@ public class FinalDoor : MonoBehaviour
     {
         closingStartTime = Time.time; // Initialize closing start time
         openingStartTime = Time.time; // Initialize opening start time
+        Vector3 openPosition = new Vector3(doorTransform.position.x, doorTransform.position.y, doorTransform.position.z);// Οι συντεταγμένες της πόρτας όταν είναι ανοιχτή
     }
 
     private void Update()
     {
         if (isClosing==true && isMoving==true)
         {
-            float elapsedTime = Time.time - closingStartTime;
-            float newXPosition = doorTransform.position.x - (closingSpeed * Time.deltaTime);
-            Vector3 newPosition = new Vector3(newXPosition, doorTransform.position.y, doorTransform.position.z);
-            doorTransform.position = newPosition;
+            float journeyFraction = (Time.time - closingStartTime) / closingDuration;
+            doorTransform.position = Vector3.MoveTowards(doorTransform.position, closePosition, journeyFraction * Vector3.Distance(doorTransform.position, closePosition));
 
-            if (elapsedTime >= closingDuration)
+            if (journeyFraction >= closingDuration)
             {
+                // Εάν έχει φτάσει στον προορισμό, σταματάμε τη μετακίνηση
                 isMoving = false;
             }
+
         }
         else if (isClosing==false && isMoving==true)
         {
-            float elapsedTime = Time.time - openingStartTime;
-            float newXPosition = doorTransform.position.x + (openingSpeed * Time.deltaTime);
-            Vector3 newPosition = new Vector3(newXPosition, doorTransform.position.y, doorTransform.position.z);
-            doorTransform.position = newPosition;
+            float journeyFraction = (Time.time - openingStartTime) / openingDuration;
+            doorTransform.position = Vector3.MoveTowards(doorTransform.position, openPosition, journeyFraction * Vector3.Distance(doorTransform.position, openPosition));
 
-            if (elapsedTime >= openingDuration)
+
+            if (journeyFraction >= openingDuration)
             {
+                // Εάν έχει φτάσει στον προορισμό, σταματάμε τη μετακίνηση
                 isMoving = false;
             }
         }
@@ -69,4 +73,5 @@ public class FinalDoor : MonoBehaviour
             openingStartTime = Time.time; // Reset opening start time
         }
     }
+
 }
