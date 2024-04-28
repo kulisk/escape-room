@@ -5,13 +5,13 @@ public class Crystals : MonoBehaviour
 {
     [SerializeField] private List<int> correctSequence = new List<int> { 3, 1, 4, 2 }; // Correct sequence of button presses
     private List<int> playerSequence; // Sequence of button presses by the player
-    private DoorController doorController; // Reference to the DoorController
+    private FinalDoor doorController; // Reference to the DoorController
 
     private void Start()
     {
         playerSequence = new List<int>();
         doorController = FindObjectOfType
-        <DoorController>(); // Find the DoorController in the scene
+        <FinalDoor>(); // Find the DoorController in the scene
     }
 
     // Method to call when a button is pressed
@@ -42,7 +42,7 @@ public class Crystals : MonoBehaviour
         // Stop the door from closing if it's already closing
         if (doorController != null)
         {
-            doorController.StopClosing();
+            doorController.StartClosing();
         }
         
         // Start opening the door upwards
