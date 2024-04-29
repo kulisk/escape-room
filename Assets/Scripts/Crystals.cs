@@ -3,52 +3,59 @@ using System.Collections.Generic;
 
 public class Crystals : MonoBehaviour
 {
-    [SerializeField] private List<int> correctSequence = new List<int> { 3, 1, 4, 2 }; // Correct sequence of button presses
-    private List<int> playerSequence; // Sequence of button presses by the player
-    private FinalDoor doorController; // Reference to the DoorController
+    [SerializeField] private List<string> correctTags = new List<string> { "Crystal1", "Crystal2", "Crystal3", "Crystal4" }; // Correct tags to be obtained
+    private List<string> obtainedTags; // List to store obtained tags
 
     private void Start()
     {
-        playerSequence = new List<int>();
-        doorController = FindObjectOfType
-        <FinalDoor>(); // Find the DoorController in the scene
+        obtainedTags = new List<string>();
     }
 
-    // Method to call when a button is pressed
-    public void ButtonPressed(int buttonIndex)
+    // Method to call when interacting with objects
+    public void InteractWithTag(string tag)
     {
-        // Check if the button pressed is the next in the correct sequence
-        if (correctSequence[playerSequence.Count] == buttonIndex)
+        // Check if the tag is one of the correct tags
+        if (correctTags.Contains(tag))
         {
-            playerSequence.Add(buttonIndex);
-            if (playerSequence.Count == correctSequence.Count)
+            // Add the tag to the list of obtained tags
+            obtainedTags.Add(tag);
+
+            // Check if the obtained tags match the correct tags in sequence
+            if (CheckTagsMatch())
             {
-                // Puzzle completed
                 PuzzleCompleted();
             }
+            else
+            {
+                ResetPlayerSequence();
+            }
         }
-        else
+    }
+
+    // Method to check if the obtained tags match the correct tags in sequence
+    private bool CheckTagsMatch()
+    {
+        if (obtainedTags.Count != correctTags.Count)
+            return false;
+
+        for (int i = 0; i < correctTags.Count; i++)
         {
-            // Incorrect button pressed, handle accordingly
-            // For example, reset the playerSequence or display a message
+            if (obtainedTags[i] != correctTags[i])
+                return false;
         }
+
+        return true;
+    }
+
+    // Method to reset the player's tag list
+    private void ResetPlayerSequence()
+    {
+        obtainedTags.Clear();
     }
 
     // Method to call when the puzzle is completed
     private void PuzzleCompleted()
     {
-        Debug.Log("Puzzle Completed!");
-        
-        // Stop the door from closing if it's already closing
-        if (doorController != null)
-        {
-            doorController.StartClosing();
-        }
-        
-        // Start opening the door upwards
-        if (doorController != null)
-        {
-            doorController.StartOpening();
-        }
+        // Add your puzzle completion logic here
     }
 }
