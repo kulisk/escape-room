@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - tag1
+  - Crystal1
+  - Crystal2
+  - Crystal3
+  - Crystal4
   layers:
   - Default
   - TransparentFX
