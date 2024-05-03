@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8351f1131c70b84fadaedffe1a8d167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  T_sequence: 01000000030000000200000004000000
+  Sequence2: 
 --- !u!1001 &1204524729859660884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -424,6 +426,22 @@ PrefabInstance:
     - target: {fileID: 6605425371963514, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501994350010893838, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1710632495}
+    - target: {fileID: 1501994350010893838, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
+      propertyPath: closePosition.x
+      value: -145
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501994350010893838, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
+      propertyPath: closePosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1501994350010893838, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
+      propertyPath: closePosition.z
+      value: -0.00003204346
       objectReference: {fileID: 0}
     - target: {fileID: 2332579285582458172, guid: db00a1f8b3e150742a6c0b0561572f4b, type: 3}
       propertyPath: m_LocalPosition.x
