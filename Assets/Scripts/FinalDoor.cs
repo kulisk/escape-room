@@ -17,14 +17,33 @@ public class FinalDoor : MonoBehaviour
     private bool isMoving = false;// Αν το αντικείμενο μετακινείται ή όχι
 
 
+    Crystals crystals;
+    public GameObject Player;
+
+    void Awake()
+    {
+        crystals = Player.GetComponent<Crystals>();
+    }
+
     private void Start()
     {
         closingStartTime = Time.time; // Initialize closing start time
         openingStartTime = Time.time; // Initialize opening start time
         Vector3 openPosition = new Vector3(doorTransform.position.x, doorTransform.position.y, doorTransform.position.z);// Οι συντεταγμένες της πόρτας όταν είναι ανοιχτή
+        StartClosing();
     }
 
     private void Update()
+    {
+        engin_of_door();
+        if(Crystals.completed == true)
+        {
+            StartOpening();
+        }
+        
+    }
+
+    void engin_of_door()
     {
         if (isClosing==true && isMoving==true)
         {

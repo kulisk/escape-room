@@ -7,7 +7,7 @@ public class Crystals : MonoBehaviour
 
     public List<int> T_sequence = new List<int>(){1,3,2,4};
     public List<int> Sequence2 = new List<int>();
-    public bool completed= false;
+    public static bool completed= false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +23,7 @@ public class Crystals : MonoBehaviour
             add_in_Sequence2(get_tag());
             print_list(T_sequence, "T_sequence");
             print_list(Sequence2, "Sequence2");
+            Debug.Log("completed:"+completed);
         }
     }
 
@@ -40,7 +41,7 @@ public class Crystals : MonoBehaviour
 
     void add_in_Sequence2(int x)
     {
-        if (Sequence2.Count < 4)
+        if (Sequence2.Count < 4&&x>0&&x<5)
         {
             if(Sequence2.IndexOf(x) == -1)
             {
