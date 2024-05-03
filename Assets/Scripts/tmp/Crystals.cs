@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 public class Crystals : MonoBehaviour
 {
 
     public List<int> T_sequence = new List<int>(){1,3,2,4};
     public List<int> Sequence2 = new List<int>();
+    public bool completed= false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +21,21 @@ public class Crystals : MonoBehaviour
         {
             Debug.Log("Αντικείμενο που κοιτάς: " + get_tag());
             add_in_Sequence2(get_tag());
-            Debug.Log(Sequence2);
+            print_list(T_sequence, "T_sequence");
+            print_list(Sequence2, "Sequence2");
         }
     }
+
+    void print_list(List<int> list, string name)
+    {
+        string x = name +":";
+            for(int i=0;i < list.Count;i++)
+            {
+                x += list[i].ToString();
+            }
+            Debug.Log(x);
+    }
+    
 
 
     void add_in_Sequence2(int x)
@@ -31,6 +45,17 @@ public class Crystals : MonoBehaviour
             if(Sequence2.IndexOf(x) == -1)
             {
                 Sequence2.Add(x);
+            }
+            if(Sequence2.Count == 4)
+            {
+                if(Sequence2.SequenceEqual(T_sequence)==true)
+                {
+                    completed = true;
+                }
+                else
+                {
+                    Sequence2.Clear();
+                }
             }
         }
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4940390060816196997}
   - component: {fileID: 3154930890574604302}
   - component: {fileID: 6159389417523554029}
-  - component: {fileID: 9141881279442131697}
+  - component: {fileID: 8494732752552774873}
   m_Layer: 0
   m_Name: CRYSTAL3
   m_TagString: Crystal3
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9141881279442131697
-MeshCollider:
+--- !u!135 &8494732752552774873
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2856505678799979450, guid: 86029a7f56982d243a6d56bff8d6f649, type: 3}
+  serializedVersion: 3
+  m_Radius: 0.000023329025
+  m_Center: {x: -0.0000003723996, y: 0.000007941171, z: 0.00000051441475}
