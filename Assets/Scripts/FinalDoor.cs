@@ -12,7 +12,7 @@ public class FinalDoor : MonoBehaviour
 
     private float closingStartTime; // Time when the door started closing
     private float openingStartTime; // Time when the door started opening
-    private bool isClosing = true; // Flag to indicate if the door is closing
+    private bool isClosing = false; // Flag to indicate if the door is closing
 
     private bool isMoving = false;// Αν το αντικείμενο μετακινείται ή όχι
 
@@ -27,8 +27,8 @@ public class FinalDoor : MonoBehaviour
 
     private void Start()
     {
-        closingStartTime = Time.time; // Initialize closing start time
-        openingStartTime = Time.time; // Initialize opening start time
+        //closingStartTime = Time.time; // Initialize closing start time
+        //openingStartTime = Time.time; // Initialize opening start time
         Vector3 openPosition = new Vector3(doorTransform.position.x, doorTransform.position.y, doorTransform.position.z);// Οι συντεταγμένες της πόρτας όταν είναι ανοιχτή
         StartClosing();
     }
@@ -36,16 +36,16 @@ public class FinalDoor : MonoBehaviour
     private void Update()
     {
         engin_of_door();
-        if(Crystals.completed == true)
+        if (Crystals.completed == true)
         {
             StartOpening();
         }
-        
+
     }
 
     void engin_of_door()
     {
-        if (isClosing==true && isMoving==true)
+        if (isClosing == true && isMoving == true)
         {
             float journeyFraction = (Time.time - closingStartTime) / closingDuration;
             doorTransform.position = Vector3.MoveTowards(doorTransform.position, closePosition, journeyFraction * Vector3.Distance(doorTransform.position, closePosition));
@@ -57,7 +57,7 @@ public class FinalDoor : MonoBehaviour
             }
 
         }
-        else if (isClosing==false && isMoving==true)
+        else if (isClosing == false && isMoving == true)
         {
             float journeyFraction = (Time.time - openingStartTime) / openingDuration;
             doorTransform.position = Vector3.MoveTowards(doorTransform.position, openPosition, journeyFraction * Vector3.Distance(doorTransform.position, openPosition));
@@ -74,7 +74,7 @@ public class FinalDoor : MonoBehaviour
     // Method to start closing the door
     public void StartClosing()
     {
-        if(isMoving==false && isClosing==false)//Έτσι ώστε να μην το ξανά καλέσει όταν ήδη κλήνει
+        if (isMoving == false && isClosing == false)//Έτσι ώστε να μην το ξανά καλέσει όταν ήδη κλήνει
         {
             isClosing = true;
             isMoving = true;
@@ -85,10 +85,10 @@ public class FinalDoor : MonoBehaviour
     // Method to start opening the door
     public void StartOpening()
     {
-        if(isMoving==true && isClosing==true)//για να ξεκινήσει να ανοίγει μόνο όταν θα είναι στην διάρκεια που κλήνει
+        if (isMoving == true && isClosing == true)//για να ξεκινήσει να ανοίγει μόνο όταν θα είναι στην διάρκεια που κλήνει
         {
             isClosing = false;
-            isMoving= true;
+            isMoving = true;
             openingStartTime = Time.time; // Reset opening start time
         }
     }
