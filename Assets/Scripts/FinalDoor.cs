@@ -1,96 +1,77 @@
 using UnityEngine;
 
-public class FinalDoor : MonoBehaviour
+public class FinalDoorMovement : MonoBehaviour
 {
     public Transform doorTransform; // Reference to the door's Transform component
-    [SerializeField] private float closingDuration = 900f; // Duration of door closing in seconds (15 minutes)
-    [SerializeField] private float openingDuration = 5f; // Duration of door opening in seconds
 
-    public Vector3 closePosition; // Οι συντεταγμένες της πόρτας όταν είναι κληστή
+    [SerializeField] private float openingDuration = 900f; // Duration for the opening movement in seconds (15 minutes)
+    [SerializeField] private float closingDuration = 5f; // Duration for the closing movement in seconds
 
-    private Vector3 openPosition; // Οι συντεταγμένες της πόρτας όταν είναι ανοιχτή
+    public Vector3 openPosition = new Vector3(-145f, 69.99999f, 204346f); // Position when the door is open
+    public Vector3 closePosition = new Vector3(-145f, 19.5f, 204346f); // Position when the door is closed
 
-    private float closingStartTime; // Time when the door started closing
-    private float openingStartTime; // Time when the door started opening
+    private float startTime; // Time when the movement started
     private bool isClosing = false; // Flag to indicate if the door is closing
-
-    private bool isMoving = false;// Αν το αντικείμενο μετακινείται ή όχι
-
-
-    Crystals crystals;
-    public GameObject Player;
-
-    void Awake()
-    {
-        crystals = Player.GetComponent<Crystals>();
-    }
+    private bool isOpening = false; // Flag to indicate if the door is opening
+    private bool isFrozen = false; // Flag to indicate if the door is frozen in place
 
     private void Start()
     {
-        //closingStartTime = Time.time; // Initialize closing start time
-        //openingStartTime = Time.time; // Initialize opening start time
-        Vector3 openPosition = new Vector3(doorTransform.position.x, doorTransform.position.y, doorTransform.position.z);// Οι συντεταγμένες της πόρτας όταν είναι ανοιχτή
+        // Start closing the door immediately
         StartClosing();
     }
 
     private void Update()
     {
-        engin_of_door();
-        if (Crystals.completed == true)
+        if (Crystals.completed && !isOpening && !isFrozen)
         {
             StartOpening();
         }
 
-    }
-
-    void engin_of_door()
-    {
-        if (isClosing == true && isMoving == true)
+        if (isClosing)
         {
-            float journeyFraction = (Time.time - closingStartTime) / closingDuration;
-            doorTransform.position = Vector3.MoveTowards(doorTransform.position, closePosition, journeyFraction * Vector3.Distance(doorTransform.position, closePosition));
-
-            if (journeyFraction >= closingDuration)
-            {
-                // Εάν έχει φτάσει στον προορισμό, σταματάμε τη μετακίνηση
-                isMoving = false;
-            }
-
+            MoveDoor(closePosition, closingDuration);
         }
-        else if (isClosing == false && isMoving == true)
+        else if (isOpening)
         {
-            float journeyFraction = (Time.time - openingStartTime) / openingDuration;
-            doorTransform.position = Vector3.MoveTowards(doorTransform.position, openPosition, journeyFraction * Vector3.Distance(doorTransform.position, openPosition));
-
-
-            if (journeyFraction >= openingDuration)
-            {
-                // Εάν έχει φτάσει στον προορισμό, σταματάμε τη μετακίνηση
-                isMoving = false;
-            }
+            MoveDoor(openPosition, openingDuration);
         }
     }
 
     // Method to start closing the door
     public void StartClosing()
     {
-        if (isMoving == false && isClosing == false)//Έτσι ώστε να μην το ξανά καλέσει όταν ήδη κλήνει
-        {
-            isClosing = true;
-            isMoving = true;
-            closingStartTime = Time.time; // Reset closing start time
-        }
+        isClosing = true;
+        isOpening = false;
+        startTime = Time.time; // Record the starting time of the movement
     }
 
     // Method to start opening the door
     public void StartOpening()
     {
-        if (isMoving == true && isClosing == true)//για να ξεκινήσει να ανοίγει μόνο όταν θα είναι στην διάρκεια που κλήνει
-        {
-            isClosing = false;
-            isMoving = true;
-            openingStartTime = Time.time; // Reset opening start time
-        }
+        isClosing = false;
+        isOpening = true;
+        startTime = Time.time; // Record the starting time of the movement
     }
 
+    // Method to move the door to the specified position with the given duration
+    private void MoveDoor(Vector3 targetPosition, float duration)
+    {
+        float journeyFraction = (Time.time - startTime) / duration;
+        doorTransform.position = Vector3.Lerp(doorTransform.position, targetPosition, journeyFraction);
+
+        // Check if the movement has completed
+        if (journeyFraction >= 1f)
+        {
+            if (isClosing)
+            {
+                isClosing = false;
+                isFrozen = true; // Door is now frozen in place
+            }
+            else if (isOpening)
+            {
+                isOpening = false;
+            }
+        }
+    }
 }
