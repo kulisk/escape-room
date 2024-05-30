@@ -12,13 +12,15 @@ public class PlayerObjectTrigger : MonoBehaviour
 
     private bool hasMoved = false; // Έχει ήδη γίνει η μετακίνηση
     private bool isMoving = false;// Αν το αντικείμενο μετακινείται ή όχι
+    public GameObject door;
+   
 
 
     void Start()
     {
         // Ορίζουμε τον προορισμό ως την αρχική θέση του αντικειμένου
         Vector3 newPosition = new Vector3(ObjectCollider.position.x, ObjectCollider.position.y, ObjectCollider.position.z);
-       
+        door.SetActive(false);
     }
 
     void Update()
@@ -41,6 +43,7 @@ public class PlayerObjectTrigger : MonoBehaviour
             // Ορίζουμε ότι έχει γίνει η μετακίνηση
             hasMoved = true;
             isMoving = true;
+            door.SetActive(true);
         }
     }
 
@@ -58,10 +61,4 @@ public class PlayerObjectTrigger : MonoBehaviour
         }
 
     }
-
-
-
-
-
-
 }

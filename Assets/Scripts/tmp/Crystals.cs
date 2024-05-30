@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 public class Crystals : MonoBehaviour
 {
+    public GameObject energized;
 
     public List<int> T_sequence = new List<int>(){1,3,2,4};
     public List<int> Sequence2 = new List<int>();

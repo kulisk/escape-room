@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class FinalDoorMovement : MonoBehaviour
+public class FinalDoor : MonoBehaviour
 {
     public Transform doorTransform; // Reference to the door's Transform component
 
-    [SerializeField] private float openingDuration = 900f; // Duration for the opening movement in seconds (15 minutes)
+    [SerializeField] private float openingDuration = 9000000f; // Duration for the opening movement in seconds (15 minutes)
     [SerializeField] private float closingDuration = 5f; // Duration for the closing movement in seconds
 
-    public Vector3 openPosition = new Vector3(-145f, 69.99999f, 204346f); // Position when the door is open
-    public Vector3 closePosition = new Vector3(-145f, 19.5f, 204346f); // Position when the door is closed
+    public Vector3 openPosition = new Vector3(-145f, 70f, 0f); // Position when the door is open
+    public Vector3 closePosition = new Vector3(-145f, 20f, 0f); // Position when the door is closed
 
     private float startTime; // Time when the movement started
     private bool isClosing = false; // Flag to indicate if the door is closing
