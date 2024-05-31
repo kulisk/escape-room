@@ -4,6 +4,7 @@ public class RampMovement : MonoBehaviour
 {
     public GameObject ramp;
     public Transform rampTransform; // Reference to the ramp's Transform component
+    private Collider objectCollider;
 
     [SerializeField] private float duration = 2f; // Duration for the movement and rotation
 
@@ -31,6 +32,7 @@ public class RampMovement : MonoBehaviour
         rampTransform.position = startPosition;
         rampTransform.rotation = startRotation;
         ramp.SetActive(false);
+        objectCollider = GetComponent<Collider>();
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class RampMovement : MonoBehaviour
 
         if (isMoving)
         {
+            objectCollider.enabled = false;
             MoveRamp();
         }
     }
@@ -61,6 +64,7 @@ public class RampMovement : MonoBehaviour
         {
             isMoving = false;
             isFrozen = true; // Freeze the ramp in place
+            objectCollider.enabled = true;
         }
     }
 }
