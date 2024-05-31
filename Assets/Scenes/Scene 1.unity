@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3690,14 +3690,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132148968556543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17e3f816c3fcfe40bb625267c99bab2, type: 3}
+  m_Script: {fileID: 11500000, guid: d3f29cd4791419c458a26dbd51bddd43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorTransform: {fileID: 543450652686802245}
-  openingDuration: 9000000
-  closingDuration: 5
-  openPosition: {x: 14.4, y: -2.2943, z: 177.9}
-  closePosition: {x: 14.4, y: -2.2943, z: 177.9}
+  ramp: {fileID: 919132148968556543}
+  rampTransform: {fileID: 543450652686802245}
+  duration: 2
+  startPosition: {x: -408.5, y: 36.9, z: 209.2}
+  startRotationEuler: {x: 90, y: 0, z: 90}
+  endPosition: {x: -450.7379, y: -2.294304, z: 217.2754}
+  endRotationEuler: {x: 0, y: -89.997, z: 180}
 --- !u!4 &1092461534486526332
 Transform:
   m_ObjectHideFlags: 0
