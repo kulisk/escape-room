@@ -8,11 +8,11 @@ public class RampMovement : MonoBehaviour
     [SerializeField] private float duration = 2f; // Duration for the movement and rotation
 
     [Header("Starting Position and Rotation")]
-    [SerializeField] private Vector3 startPosition = new Vector3(-46.1f, 18.3f, 0f);
-    [SerializeField] private Vector3 startRotationEuler = new Vector3(0f, 0f, 90f);
+    [SerializeField] private Vector3 startPosition = new Vector3(-408.5f, 36.9f, 209.2f);
+    [SerializeField] private Vector3 startRotationEuler = new Vector3(90f, 0f, 90f);
 
     [Header("End Position and Rotation")]
-    [SerializeField] private Vector3 endPosition = new Vector3(-75f, 2.5f, 0f);
+    [SerializeField] private Vector3 endPosition = new Vector3(-450.7379f, -2.294304f, 217.2754f);
     [SerializeField] private Vector3 endRotationEuler = new Vector3(0f, 0f, 0f);
 
     private Quaternion startRotation;
