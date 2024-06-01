@@ -5,6 +5,8 @@ using System.Linq;
 
 public class Crystals : MonoBehaviour
 {
+    public Material newMaterial; // Reference to the new material
+    public Renderer crystalRenderer; // Reference to the Renderer component
 
     public List<int> T_sequence = new List<int>(){1,3,2,4};
     public List<int> Sequence2 = new List<int>();
@@ -13,7 +15,13 @@ public class Crystals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        crystalRenderer = GetComponent<Renderer>();
 
+        // Check if Renderer is assigned
+        if (crystalRenderer == null)
+        {
+            Debug.LogError("Renderer component not found on the Crystal GameObject.");
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +38,7 @@ public class Crystals : MonoBehaviour
             // Change the material if the sequence is completed
             if (completed)
             {
-                
+                ChangeMaterial();
             }
         }
     }
@@ -87,5 +95,14 @@ public class Crystals : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    void ChangeMaterial()
+    {
+        // Change the material of the crystal GameObject
+        if (crystalRenderer != null && newMaterial != null)
+        {
+            crystalRenderer.material = newMaterial;
+        }
     }
 }
