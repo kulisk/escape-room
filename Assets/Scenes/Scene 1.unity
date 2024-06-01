@@ -14015,15 +14015,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148968556543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.70708853, y: 0.00017467885, z: 0.707125, w: 0.00017585604}
-  m_LocalPosition: {x: -453.5, y: 0, z: 218.59}
+  m_LocalRotation: {x: -0.49978626, y: -0.5000392, z: 0.5002138, w: -0.49996075}
+  m_LocalPosition: {x: -404.29, y: 50.7, z: 219}
   m_LocalScale: {x: 64.90567, y: 64.90567, z: 64.90567}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1790839936273431002}
   - {fileID: 853591510518452079}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -0.028, y: -89.997, z: 180}
+  m_LocalEulerAnglesHint: {x: 89.98, y: 0, z: 269.971}
 --- !u!4 &574168344350570788
 Transform:
   m_ObjectHideFlags: 0
@@ -14105,8 +14105,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ramp: {fileID: 919132148968556543}
   rampTransform: {fileID: 543450652686802245}
-  duration: 1
-  startPosition: {x: -404.29, y: -55.9, z: 218.59}
+  duration: 4
+  startPosition: {x: -404.29, y: 50.7, z: 218.59}
   startRotationEuler: {x: 89.98, y: 0, z: 269.971}
   endPosition: {x: -453.5, y: 0, z: 218.59}
   endRotationEuler: {x: -0.028, y: -89.997, z: 180}
@@ -14383,8 +14383,16 @@ PrefabInstance:
       value: floor
       objectReference: {fileID: 0}
     - target: {fileID: 4162022621280625242, guid: ae41cb22f934b2c448771c33300d41a4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162022621280625242, guid: ae41cb22f934b2c448771c33300d41a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162022621280625242, guid: ae41cb22f934b2c448771c33300d41a4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4162022621280625242, guid: ae41cb22f934b2c448771c33300d41a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15119,6 +15127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall door
       objectReference: {fileID: 0}
+    - target: {fileID: 5045029678217875104, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
+      propertyPath: m_Name
+      value: First Door
+      objectReference: {fileID: 0}
     - target: {fileID: 6447419274020776437, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
       propertyPath: m_Size.x
       value: 3.5186038
@@ -15139,6 +15151,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 6832279535023508694, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
+      propertyPath: m_Name
+      value: WALL
+      objectReference: {fileID: 0}
     - target: {fileID: 7397149456610690244, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -15157,6 +15173,7 @@ PrefabInstance:
     - {fileID: 5990884203801345645, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
     - {fileID: 5704217646635410130, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
     - {fileID: 7011497193685815249, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
+    - {fileID: 1563136416782486382, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 670520574274384250, guid: b953b8eb7fe77844fb5b0ec66d7d25a8, type: 3}
       insertIndex: -1
@@ -15199,7 +15216,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1799108125}
   ObjectCollider: {fileID: 651190323}
   ObjectToMove: {fileID: 8680289478112466644}
-  xThreshold: 5
+  xThreshold: 100
   newPosition: {x: 0, y: -11.64, z: 0}
   duration: 60
   door: {fileID: 1869844598}
@@ -15236,8 +15253,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorTransform: {fileID: 8128881448997617805}
-  openingDuration: 9000000
-  closingDuration: 5
+  openingDuration: 50
+  closingDuration: 9000000
   openPosition: {x: -425.57, y: 55.18, z: 210.22}
   closePosition: {x: -425.57, y: 17.63, z: 210.22}
 --- !u!1 &8926780467892590740
