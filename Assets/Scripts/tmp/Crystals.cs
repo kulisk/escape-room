@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Crystals : MonoBehaviour
 {
-
+    public GameObject crystalsounds;
     public List<int> T_sequence = new List<int>(){1,3,2,4};
     public List<int> Sequence2 = new List<int>();
     public static bool completed = false;
@@ -13,7 +13,7 @@ public class Crystals : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   
+        crystalsounds.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,6 +45,7 @@ public class Crystals : MonoBehaviour
         {
             if (Sequence2.IndexOf(x) == -1)
             {
+                crystalsounds.SetActive(true);
                 Sequence2.Add(x);
             }
             if (Sequence2.Count == 4)
