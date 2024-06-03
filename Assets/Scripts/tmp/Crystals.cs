@@ -21,6 +21,7 @@ public class Crystals : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            crystalsounds.SetActive(false);
             Debug.Log("Αντικείμενο που κοιτάς: " + get_tag());
             add_in_Sequence2(get_tag());
             print_list(T_sequence, "T_sequence");
